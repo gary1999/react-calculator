@@ -5,8 +5,11 @@ body {
         sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+
+
     background-color: black;
     color: white;
+
 }
 
 code {
@@ -14,3 +17,21 @@ code {
         monospace;
 }
 
+.numberButton {
+    display: flex;
+    height: 50px;
+    width: 50px;
+    align-items: center;
+    justify-content: center;
+    border-color: white;
+    border-style: double;
+
+}
+
+.numbers-container {
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
