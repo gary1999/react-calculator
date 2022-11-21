@@ -23,15 +23,13 @@ code {
     width: 50px;
     align-items: center;
     justify-content: center;
-    border-color: white;
+    border-color: rgb(255, 255, 255);
     border-style: double;
-
 }
 
-.numbers-container {
-    
+.numbers-container {   
     display: flex;
     align-items: center;
     justify-content: center;
-
+    gap: 5px;
 }

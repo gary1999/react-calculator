@@ -7,7 +7,7 @@ const Numbers = (numbers) => {
     // console.log(refNumber);
 
     const handleNumberPress = (e) => {
-        console.log(e.target.className);
+        console.log(e.target.value);
         // console.log('clicked');
     };
 
@@ -15,11 +15,12 @@ const Numbers = (numbers) => {
         <>
             {numbers.numbers.map((number) => {
                 return (
-                    <div
+                    <button
                         onClick={handleNumberPress}
                         className="numberButton"
+                        value={number}
                         // ref={refNumber}
-                    >{`${number}`}</div>
+                    >{`${number}`}</button>
                 );
             })}
         </>
