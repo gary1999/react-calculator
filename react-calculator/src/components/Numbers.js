@@ -1,13 +1,14 @@
 import React, { useRef } from 'react';
 
-const Numbers = (numbers) => {
-    console.log(numbers);
-
+const Numbers = (numbers, inputValue, setInputValue) => {
+    // console.log(numbers);
+    // console.log(inputValue);
+    // console.log(setInputValue);
     // const refNumber = useRef(null);
     // console.log(refNumber);
 
     const handleNumberPress = (e) => {
-        console.log(e.target.value);
+        numbers.setInputValue(e.target.value);
         // console.log('clicked');
     };
 
