@@ -6,8 +6,8 @@ import Numbers from './components/Numbers';
 function App() {
     // const [numbers, setNumbers] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9]);
     const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-    const operations = ['+', '-', 'x', '/'];
-    const equal = ['='];
+    const operations = ['+', '-', 'x', '/', '='];
+    // const equal = ['='];
 
     const [inputValue, setInputValue] = useState('');
     const [inputValueString, setInputValueString] = useState('');
@@ -26,30 +26,22 @@ function App() {
         setOperationChoice(e.target.value);
         setUserInputArray([...userInputArray, inputValue]);
 
-        setInputValueString(
-            inputValueString + inputValue + ` ${e.target.value} `
-        );
-
-        // if (userInputArray.length < 1) {
-        //     setTotal(0 + inputValue * 1);
-        // } else {
-        //     if (e.target.value === '+') {
-        //         setTotal();
-        //     }
-        // }
+        handleOperations();
 
         setInputValue('');
     };
 
-    const handleEqualsClick = () => {
-        // console.log('Equals');
-        console.log('userInputArray: ', userInputArray);
-        console.log('input string', inputValueString);
-        // console.log(total);
-        // setInputValue('');
+    const handleOperations = () => {
+        if (userInputArray.length < 1) {
+            setTotal(inputValue * 1);
+            // setTempTotal(0 + inputValue * 1);
+        } else {
+            setTotal(inputValue * 1);
+        }
     };
 
     useEffect(() => {
+        //Eval over here after each value has been changed?
         // console.log(inputValue);
     }, [inputValue]);
 
@@ -57,17 +49,21 @@ function App() {
         console.log(operationChoice);
     }, [operationChoice]);
 
-    useEffect(() => {
-        // console.log(userInputArray);
-    }, [userInputArray]);
+    // useEffect(() => {
+    //     if (userInputArray.length < 1) {
+    //         setTotal(0 + inputValue * 1);
+    //     } else {
+    //     }
+    // });
 
     return (
         <>
             <div className="App">
                 <h1>Simple Calculator</h1>
                 <div className="main-container">
-                    <div>{`: ${inputValue}`}</div>
-                    <div>{`string: ${inputValueString} ${inputValue}`}</div>
+                    {/* <div>{`: ${inputValue}`}</div> */}
+                    <div>{`string: ${inputValue}`}</div>
+                    {/* <div>{`string: ${inputValueString} ${inputValue}`}</div> */}
                     <div>{`= ${total}`}</div>
                     <div className="numbers-container">
                         {numbers.map((number) => {
@@ -95,13 +91,13 @@ function App() {
                             );
                         })}
                     </div>
-                    <div className="operations-container">
+                    {/* <div className="operations-container">
                         <button
                             onClick={handleEqualsClick}
                             className="operationButton"
                             value={equal}
                         >{`${equal}`}</button>
-                    </div>
+                    </div> */}
                 </div>
             </div>
             ;
