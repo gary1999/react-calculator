@@ -25,7 +25,14 @@ code {
     gap: 20px
 }
 
-.numberButton {
+.numbers-container, .operations-container {   
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.numberButton, .operationButton {
     display: flex;
     height: 50px;
     width: 50px;
@@ -33,11 +40,4 @@ code {
     justify-content: center;
     border-color: rgb(255, 255, 255);
     border-style: double;
-}
-
-.numbers-container {   
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
 }
