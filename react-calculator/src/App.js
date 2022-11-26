@@ -12,19 +12,20 @@ function App() {
     const [inputValue, setInputValue] = useState('');
     const [inputValueString, setInputValueString] = useState('');
 
-    const [userInputArray, setUserInputArray] = useState([]);
-
-    const [operationChoice, setOperationChoice] = useState('');
+    const [userInputArray, setUserInputArray] = useState([0]);
+    const [operationArray, setOperationArray] = useState([]);
 
     const [total, setTotal] = useState(0);
+
+    const [stringArray, setStringArray] = useState([]);
 
     const handleNumberClick = (e) => {
         setInputValue(inputValue + e.target.value);
     };
 
     const handleOperationClick = (e) => {
-        setOperationChoice(e.target.value);
         setUserInputArray([...userInputArray, inputValue]);
+        setOperationArray([...operationArray, e.target.value]);
 
         handleOperations();
 
@@ -40,21 +41,33 @@ function App() {
         }
     };
 
+    // const newArray = ['test', 'test2', 'test3'];
+    // console.log(newArray.slice(0, -1));
+    // console.log(newArray);
+
+    const testButton = () => {
+        console.log(stringArray);
+    };
+
     useEffect(() => {
         //Eval over here after each value has been changed?
         // console.log(inputValue);
     }, [inputValue]);
 
     useEffect(() => {
-        console.log(operationChoice);
-    }, [operationChoice]);
+        console.log(userInputArray);
+    }, [userInputArray]);
 
-    // useEffect(() => {
-    //     if (userInputArray.length < 1) {
-    //         setTotal(0 + inputValue * 1);
-    //     } else {
-    //     }
-    // });
+    useEffect(() => {
+        for (let i = 0; i < userInputArray.length - 1; i++) {
+            setStringArray([
+                ...stringArray,
+                userInputArray[i + 1],
+                operationArray[i],
+            ]);
+            // setStringArray([...stringArray, ]);
+        }
+    }, [operationArray]);
 
     return (
         <>
@@ -65,6 +78,7 @@ function App() {
                     <div>{`string: ${inputValue}`}</div>
                     {/* <div>{`string: ${inputValueString} ${inputValue}`}</div> */}
                     <div>{`= ${total}`}</div>
+                    <div>{stringArray}</div>
                     <div className="numbers-container">
                         {numbers.map((number) => {
                             return (
@@ -91,6 +105,7 @@ function App() {
                             );
                         })}
                     </div>
+                    <button onClick={testButton}>test</button>
                     {/* <div className="operations-container">
                         <button
                             onClick={handleEqualsClick}
