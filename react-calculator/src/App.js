@@ -18,6 +18,7 @@ function App() {
     const [total, setTotal] = useState(0);
 
     const [stringArray, setStringArray] = useState([]);
+    const [calcString, setCalcString] = useState('');
 
     const handleNumberClick = (e) => {
         setInputValue(inputValue + e.target.value);
@@ -27,7 +28,7 @@ function App() {
         setUserInputArray([...userInputArray, inputValue]);
         setOperationArray([...operationArray, e.target.value]);
 
-        handleOperations();
+        // handleOperations();
 
         setInputValue('');
     };
@@ -65,9 +66,13 @@ function App() {
                 userInputArray[i + 1],
                 operationArray[i],
             ]);
-            // setStringArray([...stringArray, ]);
         }
     }, [operationArray]);
+
+    useEffect(() => {
+        let tempTotal = stringArray.join('');
+        setTotal(eval(tempTotal.slice(0, -1)));
+    }, [stringArray]);
 
     return (
         <>
