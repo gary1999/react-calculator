@@ -42,22 +42,9 @@ function App() {
         }
     };
 
-    // const newArray = ['test', 'test2', 'test3'];
-    // console.log(newArray.slice(0, -1));
-    // console.log(newArray);
-
     const testButton = () => {
         console.log(stringArray);
     };
-
-    useEffect(() => {
-        //Eval over here after each value has been changed?
-        // console.log(inputValue);
-    }, [inputValue]);
-
-    useEffect(() => {
-        console.log(userInputArray);
-    }, [userInputArray]);
 
     useEffect(() => {
         for (let i = 0; i < userInputArray.length - 1; i++) {
@@ -70,6 +57,9 @@ function App() {
     }, [operationArray]);
 
     useEffect(() => {
+        // const newArray = ['test', 'test2', 'test3'];
+        // console.log(newArray.slice(0, -1));
+        // console.log(newArray);
         let tempTotal = stringArray.join('');
         setTotal(eval(tempTotal.slice(0, -1)));
     }, [stringArray]);
