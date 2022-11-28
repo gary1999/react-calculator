@@ -5,7 +5,8 @@ import Numbers from './components/Numbers';
 
 function App() {
     // const [numbers, setNumbers] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9]);
-    const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    // const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    const numbers = [7, 8, 9, 4, 5, 6, 1, 2, 3];
     const operations = ['+', '-', '*', '/', '='];
     // const equal = ['='];
 

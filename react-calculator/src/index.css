@@ -25,12 +25,22 @@ code {
     gap: 20px
 }
 
-.numbers-container, .operations-container {   
+.numbers-container {   
+    max-width: 200px;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.operations-container {   
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 5px;
 }
+
 
 .numberButton, .operationButton {
     display: flex;
@@ -39,5 +49,14 @@ code {
     align-items: center;
     justify-content: center;
     border-color: rgb(255, 255, 255);
-    border-style: double;
+    border-style: none;
+}
+
+button:hover {
+    background-color: rgb(233, 163, 163);
+}
+
+button:disabled {
+    background-color: grey;
+    color: black;
 }
