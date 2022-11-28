@@ -6,7 +6,7 @@ import Numbers from './components/Numbers';
 function App() {
     // const [numbers, setNumbers] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9]);
     const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-    const operations = ['+', '-', 'x', '/', '='];
+    const operations = ['+', '-', '*', '/', '='];
     // const equal = ['='];
 
     const [inputValue, setInputValue] = useState('');
@@ -14,6 +14,8 @@ function App() {
 
     const [userInputArray, setUserInputArray] = useState([0]);
     const [operationArray, setOperationArray] = useState([]);
+
+    const [disableOperations, setDisableOperations] = useState(false);
 
     const [total, setTotal] = useState(0);
 
@@ -64,6 +66,14 @@ function App() {
         setTotal(eval(tempTotal.slice(0, -1)));
     }, [stringArray]);
 
+    useEffect(() => {
+        if (inputValue === '') {
+            setDisableOperations(true);
+        } else {
+            setDisableOperations(false);
+        }
+    }, [inputValue]);
+
     return (
         <>
             <div className="App">
@@ -94,6 +104,7 @@ function App() {
                                     onClick={handleOperationClick}
                                     className="operationButton"
                                     value={operation}
+                                    disabled={disableOperations}
                                 >
                                     {`${operation}`}
                                 </button>
