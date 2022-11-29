@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import './App.css';
-import Input from './components/Input';
-import Numbers from './components/Numbers';
+// import React from 'react';
+// import Input from './components/Input';
+// import Numbers from './components/Numbers';
 
 function App() {
     // const [numbers, setNumbers] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9]);
@@ -11,7 +12,7 @@ function App() {
     // const equal = ['='];
 
     const [inputValue, setInputValue] = useState('');
-    const [inputValueString, setInputValueString] = useState('');
+    // const [inputValueString, setInputValueString] = useState('');
 
     const [userInputArray, setUserInputArray] = useState([0]);
     const [operationArray, setOperationArray] = useState([]);
@@ -21,28 +22,17 @@ function App() {
     const [total, setTotal] = useState(0);
 
     const [stringArray, setStringArray] = useState([]);
-    const [calcString, setCalcString] = useState('');
+    // const [calcString, setCalcString] = useState('');
 
     const handleNumberClick = (e) => {
         setInputValue(inputValue + e.target.value);
+        // console.log(typeof e.target.value);
     };
 
     const handleOperationClick = (e) => {
         setUserInputArray([...userInputArray, inputValue]);
         setOperationArray([...operationArray, e.target.value]);
-
-        // handleOperations();
-
         setInputValue('');
-    };
-
-    const handleOperations = () => {
-        if (userInputArray.length < 1) {
-            setTotal(inputValue * 1);
-            // setTempTotal(0 + inputValue * 1);
-        } else {
-            setTotal(inputValue * 1);
-        }
     };
 
     const testButton = () => {
@@ -74,6 +64,31 @@ function App() {
             setDisableOperations(false);
         }
     }, [inputValue]);
+
+    const handleKeyPress = (e) => {
+        // console.log(e.key);
+        if (numbers.includes(e.key * 1)) {
+            setInputValue((inputValue) => inputValue + e.key);
+        } else if (operations.includes(e.key)) {
+            console.log(userInputArray);
+            setUserInputArray((userInputArray) => [
+                ...userInputArray,
+                inputValue,
+            ]);
+            setOperationArray((operationArray) => [...operationArray, e.key]);
+            setInputValue('');
+        } else {
+            console.log('pass');
+        }
+        // setInputValue(inputValue);
+    };
+
+    useEffect(() => {
+        document.addEventListener('keydown', handleKeyPress);
+        return () => {
+            document.removeEventListener('keydown', handleKeyPress);
+        };
+    }, [handleKeyPress]);
 
     return (
         <>
