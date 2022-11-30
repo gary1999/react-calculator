@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 // import React from 'react';
 // import Input from './components/Input';
@@ -8,8 +8,8 @@ function App() {
     // const [numbers, setNumbers] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9]);
     // const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     const numbers = [7, 8, 9, 4, 5, 6, 1, 2, 3];
-    const operations = ['+', '-', '*', '/', '='];
-    // const equal = ['='];
+    const operations = ['+', '-', '*', '/'];
+    const equal = ['='];
 
     const [inputValue, setInputValue] = useState('');
     // const [inputValueString, setInputValueString] = useState('');
@@ -35,6 +35,10 @@ function App() {
         setInputValue('');
     };
 
+    const handleEqualsClick = (e) => {
+        setInputValue('');
+    };
+
     const testButton = () => {
         console.log(stringArray);
     };
@@ -48,6 +52,10 @@ function App() {
             ]);
         }
     }, [operationArray]);
+
+    useEffect(() => {
+        console.log(userInputArray);
+    }, [userInputArray]);
 
     useEffect(() => {
         // const newArray = ['test', 'test2', 'test3'];
@@ -66,7 +74,7 @@ function App() {
     }, [inputValue]);
 
     const handleKeyPress = (e) => {
-        // console.log(e.key);
+        // console.log(typeof e.key);
         if (numbers.includes(e.key * 1)) {
             setInputValue((inputValue) => inputValue + e.key);
         } else if (operations.includes(e.key)) {
@@ -78,8 +86,19 @@ function App() {
             setOperationArray((operationArray) => [...operationArray, e.key]);
             setInputValue('');
         } else {
-            console.log('pass');
         }
+        // } else if (e.key === 'Enter') {
+        //     setUserInputArray((userInputArray) => [
+        //         ...userInputArray,
+        //         inputValue,
+        //     ]);
+        //     let tempTotal = stringArray.join('');
+        //     setTotal(eval(tempTotal.slice(0, -1)));
+        //     setInputValue('');
+        //     // console.log('enter');
+        // } else {
+        //     console.log('pass');
+        // }
         // setInputValue(inputValue);
     };
 
@@ -96,9 +115,9 @@ function App() {
                 <h1>Simple Calculator</h1>
                 <div className="main-container">
                     {/* <div>{`: ${inputValue}`}</div> */}
-                    <div>{`string: ${inputValue}`}</div>
+                    <div>{`Current Input: ${inputValue}`}</div>
                     {/* <div>{`string: ${inputValueString} ${inputValue}`}</div> */}
-                    <div>{`= ${total}`}</div>
+                    <div>{`Current Total = ${total}`}</div>
                     <div>{stringArray}</div>
                     <div className="numbers-container">
                         {numbers.map((number) => {
@@ -127,14 +146,14 @@ function App() {
                             );
                         })}
                     </div>
+                    {/* <button
+                        onClick={handleEqualsClick}
+                        className="operationButton"
+                        value={equal}
+                    >
+                        {equal} 
+                    </button>*/}
                     <button onClick={testButton}>test</button>
-                    {/* <div className="operations-container">
-                        <button
-                            onClick={handleEqualsClick}
-                            className="operationButton"
-                            value={equal}
-                        >{`${equal}`}</button>
-                    </div> */}
                 </div>
             </div>
             ;
